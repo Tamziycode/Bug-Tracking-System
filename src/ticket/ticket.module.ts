@@ -8,7 +8,7 @@ import { TicketController } from './presentation/ticket.controller';
   imports: [
     MongooseModule.forFeature([{ name: Ticket.name, schema: TicketSchema }]),
   ],
-  controllers: [], // We will build the Controller next
+  controllers: [TicketController], // We will build the Controller next
   providers: [
     TicketService,
     {

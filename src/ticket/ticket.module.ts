@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TicketService } from './application/ticket.service';
 import { MongoTicketRepository } from './infrastructure/mongo-ticket.repository';
 import { Ticket, TicketSchema } from './infrastructure/ticket.schema';
-
+import { TicketController } from './presentation/ticket.controller';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Ticket.name, schema: TicketSchema }]),

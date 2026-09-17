@@ -1,10 +1,12 @@
+import { Inject, Injectable } from '@nestjs/common';
 import { TicketEntity, TicketSeverity } from '../domain/ticket.entity';
-import { ITicketRepository } from '../domain/ticket.repository.interface';
+import type { ITicketRepository } from '../domain/ticket.repository.interface';
 
+@Injectable()
 export class TicketService {
   private repository: ITicketRepository;
 
-  constructor(repo: ITicketRepository) {
+  constructor(@Inject('ITicketRepository') repo: ITicketRepository) {
     this.repository = repo;
   }
 

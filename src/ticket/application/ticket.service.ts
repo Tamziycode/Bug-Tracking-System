@@ -8,37 +8,37 @@ export class TicketService {
     this.repository = repo;
   }
 
-  createTicket(
+  async createTicket(
     id: string,
     title: string,
     description: string,
     severity: TicketSeverity,
-  ): void {
+  ): Promise<void> {
     const theTicket = new TicketEntity(id, title, description, severity);
-    this.repository.save(theTicket);
+    await this.repository.save(theTicket);
   }
 
-  assignTicket(id: string, userId: string): void {
-    const foundTicket = this.repository.getById(id);
+  async assignTicket(id: string, userId: string): Promise<void> {
+    const foundTicket = await this.repository.getById(id);
     if (foundTicket) {
       foundTicket.assign(userId);
-      this.repository.save(foundTicket);
+      await this.repository.save(foundTicket);
     }
   }
 
-  startTicket(id: string): void {
-    const foundTicket = this.repository.getById(id);
+  async startTicket(id: string): Promise<void> {
+    const foundTicket = await this.repository.getById(id);
     if (foundTicket) {
       foundTicket.startWork();
-      this.repository.save(foundTicket);
+      await this.repository.save(foundTicket);
     }
   }
 
-  resolveTicket(id: string): void {
-    const foundTicket = this.repository.getById(id);
+  async resolveTicket(id: string): Promise<void> {
+    const foundTicket = await this.repository.getById(id);
     if (foundTicket) {
       foundTicket.resolve();
-      this.repository.save(foundTicket);
+      await this.repository.save(foundTicket);
     }
   }
 }
